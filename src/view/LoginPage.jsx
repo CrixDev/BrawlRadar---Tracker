@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../components/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
-  const [userID, setUserID] = useState('');
-
+  const { userID, setUserID } = useContext(UserContext);
+  const navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log('UserID:', userID);
+    navigate('/');
 
   };
 

@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import { UserContext } from '../components/UserContext';
 import { Activity, Award, Clock } from 'lucide-react';
 import StatCard from '../components/StatCard';
 import ActivityItem from '../components/ActivityItem';
 
 
+
 function HomePage() {
- 
+  const { userID } = useContext(UserContext); 
+  const apiKey = 'RHXP3Q3WN2N37P7SRA8B';
+  const steamId = {userID};
+
+  const url = `https://api.brawlhalla.com/search?steamid=${steamId}&api_key=${apiKey}`;
+  
+
     return(
     <div className=" p-8 bg-[#000033] text-[#EDF3F9] min-h-screen">
     <div className='flex space-x-10'>
-    <h2 className="text-4xl font-bold mb-8 text-[#70C9D3]">Welcome, Crix!</h2>
-  <Link to="/Login">
-  <button 
-    
+    <h2 className="text-4xl font-bold mb-8 text-[#70C9D3]"> Welcome, {userID || 'Guest'}!</h2>
+    <Link to="/Login">
+    <button 
     className='py-2 h-12 rounded font-semibold text-lg p-2 bg-[#70C9D3] text-[#000033] hover:bg-[#5AAAB2] transition-all'>
       Iniciar Sesion
-       
        </button>
        </Link>
-   
     </div>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
       <StatCard icon={Clock} title="Play Time" value="127 hours" />
@@ -31,13 +35,24 @@ function HomePage() {
     <div className="bg-[#3C1F96] rounded-lg p-6 shadow-lg">
       <h3 className="text-2xl font-semibold mb-4">Recent Activity</h3>
       <ul className="space-y-3">
-        <ActivityItem text="Completed mission 'The Fall of Titans'" />
-        <ActivityItem text="Unlocked achievement 'Stealth Master'" />
-        <ActivityItem text="Reached level 75" />
+      <ActivityItem text="Completed mission 'The Fall of Titans'" />
+      <ActivityItem text="Unlocked achievement 'Stealth Master'" />
+      <ActivityItem text="Reached level 75" />
       </ul>
     </div>
 
-  </div>
+    <div className='flex justify-center mt-8'> 
+    <Link to="/About">
+    <button
+    className='py-2 h-12 rounded font-semibold text-lg p-2 bg-[#70C9D3] text-[#000033] hover:bg-[#5AAAB2] transition-all flex items-center'>
+      <Activity className="mr-2 text-[#3C1F96]" />
+      About
+       </button>
+       </Link>      
+    </div>
+    </div>
+
+    
     );
 }
 

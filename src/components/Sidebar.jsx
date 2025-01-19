@@ -29,7 +29,7 @@ function Sidebar() {
               to="/" 
               className="flex items-center px-2 py-2 rounded hover:bg-[#7F2CB2] transition-colors duration-300"
             >
-              <Home size={20} className="mr-2 text-[#70C9D3]" />
+              <Home size={20} className="mr-2 shrink-0 text-[#70C9D3]" />
               <span className={isCollapsed ? 'hidden' : 'block'}>Home</span>
             </Link>
           </li>
@@ -38,7 +38,7 @@ function Sidebar() {
               to="/about" 
               className="flex items-center px-2 py-2 rounded hover:bg-[#7F2CB2] transition-colors duration-300"
             >
-              <Info size={20} className="mr-2 text-[#70C9D3]" />
+              <Info size={20} className="mr-2 shrink-0 text-[#70C9D3]" />
               <span className={isCollapsed ? 'hidden' : 'block'}>About</span>
             </Link>
           </li>
