@@ -10,14 +10,29 @@ import ActivityItem from '../components/ActivityItem';
 function HomePage() {
   const { userID } = useContext(UserContext); 
   const apiKey = 'RHXP3Q3WN2N37P7SRA8B';
-  const steamId = {userID};
 
-  const url = `https://api.brawlhalla.com/search?steamid=${steamId}&api_key=${apiKey}`;
+  const url = `https://api.brawlhalla.com/search?steamid=${userID}&api_key=${apiKey}`;
   
+  const fetchData = async () => { 
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [url]);
+    
+
+
 
     return(
     <div className=" p-8 bg-[#000033] text-[#EDF3F9] min-h-screen">
-    <div className='flex space-x-10'>
+    <div className='flex space-x-10 w-full justify-between items-center mb-8'>
     <h2 className="text-4xl font-bold mb-8 text-[#70C9D3]"> Welcome, {userID || 'Guest'}!</h2>
     <Link to="/Login">
     <button 
@@ -41,15 +56,6 @@ function HomePage() {
       </ul>
     </div>
 
-    <div className='flex justify-center mt-8'> 
-    <Link to="/About">
-    <button
-    className='py-2 h-12 rounded font-semibold text-lg p-2 bg-[#70C9D3] text-[#000033] hover:bg-[#5AAAB2] transition-all flex items-center'>
-      <Activity className="mr-2 text-[#3C1F96]" />
-      About
-       </button>
-       </Link>      
-    </div>
     </div>
 
     
