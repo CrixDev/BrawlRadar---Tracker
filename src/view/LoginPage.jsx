@@ -12,7 +12,7 @@ function LoginPage() {
     setError("");
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth`, {
+      const response = await fetch(`https://brawl-radar-backend.vercel.app/api/auth`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userID })
